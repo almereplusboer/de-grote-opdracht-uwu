@@ -1,0 +1,76 @@
+﻿@using System.Data;
+@using XmlCrud.AppCode;
+<!DOCTYPE html>
+
+@{
+    SongMethods mySongMethods = Session["playlistClass"] as SongMethods;
+    string file = Session["file"] as string;
+}
+@if (IsPost)
+{
+    DataRow dr = mySongMethods.GetEmptyDataRow();
+
+    dr[0] = Request.Form["id"];
+    dr[2] = Request.Form["title"];
+    dr[1] = Request.Form["artist"];
+    dr[3] = Request.Form["year"];
+    dr[4] = Request.Form["genre"];
+    dr[5] = Request.Form["time"];
+    dr[6] = Request.Form["file"];
+
+    mySongMethods.CreateSong(dr, file);
+    Response.Redirect(@"~/index.cshtml");
+
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <table style="width:100%;">
+        <tr>
+            <td>id: </td>
+            <td>Title: </td>
+            <td>Artist: </td>
+            <td>Year: </td>
+            <td>Genre: </td>
+            <td>Duration: </td>
+            <td>File: </td>
+        </tr>
+        <tr>
+            <td><input id="txtId" type="text" /></td>
+            <td><input id="txtTitle" type="text" /></td>
+            <td><input id="txtArtist" type="text" /></td>
+            <td><input id="txtYear" type="text" /></td>
+            <td><input id="txtGenre" type="text" /></td>
+            <td><input id="txtTime" type="text" /></td>
+            <td><input id="txtFile" type="text" /></td>
+        </tr>
+    </table>
+</body>
+</html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        Are you sure?
+    </div>
+    <input type="button" class="choice" placeholder="Yes" />
+    <input type="button" class="choice" placeholder="No" />
+    @if (IsPost)
+    {
+        if (Request.Form["choice"] == "yes")
+        {
+            string id = Request.QueryString["id"];
+            mySongMethods.DeleteSong(id, file);
+        }
+
+        Response.Redirect(@"~/index.cshtml");
+    }
+</body>
+</html>
