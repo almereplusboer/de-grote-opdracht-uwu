@@ -1,0 +1,34 @@
+﻿@using System.Data;
+@using XmlCrud.AppCode;
+<!DOCTYPE html>
+
+
+@{
+    SongMethods mySongMethods = Session["playlistClass"] as SongMethods;
+    string file = Session["file"] as string;
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        Are you sure?
+    </div>
+    <input type="button" class="choice" placeholder="Yes" />
+    <input type="button" class="choice" placeholder="No" />
+
+    @if (IsPost)
+    {
+        if (Request.Form["choice"] == "yes")
+        {
+            string id = Request.QueryString["id"];
+            mySongMethods.DeleteSong(id, file);
+        }
+
+        Response.Redirect(@"~/index.cshtml");
+    }
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "song": 
+  [
+    {
+      "id": 1,
+      "title":  "BOSS BITCH",
+      "artist": "Famke Louise" ,
+      "year": 2019 ,
+      "genre": "Nederhop",
+      "time": "2:19",
+      "file": ""   
+    },
+    {
+      "id": 2,
+      "title": "Art of Love"  ,
+      "artist": "Guy Sebastian, Jordin Sparks"  ,
+      "year": 2009,
+      "genre": "R&B/Pop",
+      "time": "3:58",
+      "file": "" 
+    }
+  ]
+}
